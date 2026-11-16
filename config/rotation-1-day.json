@@ -1,0 +1,54 @@
+{
+  "timezone": "America/Santiago",
+  "user": "Erick",
+  "anchorDate": "2025-09-29",
+  "weekdays": [
+    "Lunes",
+    "Martes",
+    "Miércoles",
+    "Jueves",
+    "Viernes"
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "days": {
+        "Lunes": "Erick",
+        "Martes": "Catalina",
+        "Miércoles": "Claudio",
+        "Jueves": "",
+        "Viernes": "Miguel"
+      }
+    },
+    {
+      "week": 2,
+      "days": {
+        "Lunes": "Erick",
+        "Martes": "Catalina",
+        "Miércoles": "TODOS presencial (planificación)",
+        "Jueves": "",
+        "Viernes": "Miguel"
+      }
+    },
+    {
+      "week": 3,
+      "days": {
+        "Lunes": "Erick",
+        "Martes": "Catalina",
+        "Miércoles": "Claudio",
+        "Jueves": "",
+        "Viernes": "Miguel"
+      }
+    },
+    {
+      "week": 4,
+      "days": {
+        "Lunes": "Erick",
+        "Martes": "Catalina",
+        "Miércoles": "TODOS presencial (planificación)",
+        "Jueves": "",
+        "Viernes": "Miguel"
+      }
+    }
+  ]
+}

@@ -3,7 +3,7 @@ import './app-theme.css';
 
 import { getCurrentAndNextWeekIndices, getWeekIndexFromAnchor } from './lib/date';
 import logo from './assets/logo-only-icon.png';
-import rotationConfig from '../config/rotation-2-seats-with-erick-dev.json';
+import rotationConfig from '../config/rotation-1-day.json';
 import type { RotationConfig } from './lib/types';
 import { Button } from './components/ui/button';
 import { Calendar } from './components/ui/calendar';
@@ -45,7 +45,7 @@ const App = () => {
       const stored = localStorage.getItem('selected-member');
       if (stored && members.includes(stored)) return stored;
     }
-    return members.includes('Agustín') ? 'Agustín' : (members[0] || '');
+    return members.includes(config.user) ? config.user : (members[0] || '');
   });
 
   useEffect(() => {
