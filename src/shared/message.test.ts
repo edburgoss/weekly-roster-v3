@@ -5,7 +5,7 @@ import type { NextWorkdayRoster } from './types';
 
 const PAGE_URL = 'https://script.google.com/a/macros/example.com/s/abc/exec';
 const ALERT_LINE = '🚨👮🏻‍♂️🚨👮🏻‍♂️🚨';
-const LINK_LINE = `Aquí puedes revisar el horario: ${PAGE_URL}`;
+const LINK_LINE = `<${PAGE_URL}|Aquí puedes revisar el horario>`;
 
 const roster = (overrides: Partial<NextWorkdayRoster> = {}): NextWorkdayRoster => ({
   date: '2026-11-24',

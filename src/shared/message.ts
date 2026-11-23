@@ -1,5 +1,6 @@
 import type { NextWorkdayRoster } from './types';
 
+const LINK_TEXT = 'Aquí puedes revisar el horario';
 const ALERT_LINE = '🚨👮🏻‍♂️🚨👮🏻‍♂️🚨';
 const EVERYONE_PATTERN = /^TODOS/i;
 const MEMBER_SEPARATOR = '+';
@@ -35,7 +36,7 @@ const describeAssignment = (when: string, assignment: string): string => {
 
 const buildRosterMessage = (roster: NextWorkdayRoster, pageUrl: string): string => {
   const lines = [describeAssignment(describeWhen(roster), roster.assignment), ALERT_LINE];
-  if (pageUrl) lines.push(`Aquí puedes revisar el horario: ${pageUrl}`);
+  if (pageUrl) lines.push(`<${pageUrl}|${LINK_TEXT}>`);
   return lines.join('\n');
 };
 
