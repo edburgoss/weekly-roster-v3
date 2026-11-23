@@ -12,7 +12,7 @@
     "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.gas.json",
     "lint": "eslint .",
     "test": "vitest run",
-    "deploy": "gh-pages -d dist"
+    "deploy": "pnpm build && clasp push"
   },
   "dependencies": {
     "@radix-ui/react-popover": "^1.1.23",
@@ -45,7 +45,6 @@
     "eslint-plugin-jsx-a11y": "^6.10.0",
     "eslint-plugin-react": "^7.37.1",
     "eslint-plugin-react-hooks": "^5.0.0",
-    "gh-pages": "^6.3.0",
     "globals": "^17.14.0",
     "jsdom": "^25.0.1",
     "postcss": "^8.4.47",
