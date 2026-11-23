@@ -7,6 +7,7 @@ import jsxA11y from 'eslint-plugin-jsx-a11y';
 import prettier from 'eslint-config-prettier';
 
 export default ts.config(
+  { ignores: ['dist', 'coverage'] },
   js.configs.recommended,
   ...ts.configs.recommended,
   prettier,
@@ -37,6 +38,5 @@ export default ts.config(
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
     },
-    ignores: ['dist', 'coverage'],
   }
 );

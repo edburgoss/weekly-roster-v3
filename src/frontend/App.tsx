@@ -1,15 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import './app-theme.css';
 
-import { getCurrentAndNextWeekIndices, getWeekIndexFromAnchor } from './lib/date';
+import { getCurrentAndNextWeekIndices, getWeekIndexFromAnchor, rotationConfig } from '../shared';
 import logo from './assets/logo-only-icon.png';
-import rotationConfig from '../config/rotation-1-day.json';
-import type { RotationConfig } from './lib/types';
 import { Button } from './components/ui/button';
 import { Calendar } from './components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from './components/ui/popover';
 
-const config = rotationConfig as RotationConfig;
+const config = rotationConfig;
 
 const App = () => {
   const [now, setNow] = useState<Date>(new Date());

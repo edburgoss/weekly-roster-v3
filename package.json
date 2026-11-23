@@ -5,9 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "rimraf dist && pnpm build:backend && pnpm build:frontend",
+    "build:backend": "vite build --config vite.gas.config.ts",
+    "build:frontend": "vite build",
     "preview": "vite preview",
-    "deploy": "gh-pages -d dist"
+    "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.gas.json",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "deploy": "pnpm build && clasp push"
   },
   "dependencies": {
     "@radix-ui/react-popover": "^1.1.23",
@@ -22,8 +27,12 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.3",
+    "@gas-plugin/unplugin": "^0.2.2",
+    "@google/clasp": "^3.4.1",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
+    "@types/google-apps-script": "^2.0.15",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@typescript-eslint/eslint-plugin": "^8.7.0",
@@ -36,14 +45,16 @@
     "eslint-plugin-jsx-a11y": "^6.10.0",
     "eslint-plugin-react": "^7.37.1",
     "eslint-plugin-react-hooks": "^5.0.0",
-    "gh-pages": "^6.3.0",
+    "globals": "^17.14.0",
     "jsdom": "^25.0.1",
     "postcss": "^8.4.47",
     "prettier": "^3.3.3",
+    "rimraf": "^6.1.4",
     "tailwindcss": "^3.4.13",
     "typescript": "~5.6.3",
     "typescript-eslint": "^8.7.0",
     "vite": "^5.4.10",
+    "vite-plugin-singlefile": "^2.3.4",
     "vitest": "^2.1.4"
   }
 }
