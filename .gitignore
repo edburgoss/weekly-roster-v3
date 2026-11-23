@@ -14,3 +14,5 @@ node_modules/.vite/
 *.tsbuildinfo
 *.log
 scripts/
+sprint/
+.clasprc.json
