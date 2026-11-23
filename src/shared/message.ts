@@ -1,20 +1,42 @@
 import type { NextWorkdayRoster } from './types';
 
-const EMPTY_ASSIGNMENT = 'sin asignación';
+const ALERT_LINE = '🚨👮🏻‍♂️🚨👮🏻‍♂️🚨';
+const EVERYONE_PATTERN = /^TODOS/i;
+const MEMBER_SEPARATOR = '+';
 
-const formatDayMonth = (isoDate: string): string => {
-  const [, month, day] = isoDate.split('-');
-  return `${day}/${month}`;
+const formatFullDate = (isoDate: string): string => {
+  const [year, month, day] = isoDate.split('-');
+  return `${day}/${month}/${year}`;
+};
+
+const describeWhen = (roster: NextWorkdayRoster): string => {
+  const date = formatFullDate(roster.date);
+  return roster.isTomorrow
+    ? `Mañana (${roster.weekday} ${date})`
+    : `El ${roster.weekday.toLocaleLowerCase('es')} (${date})`;
+};
+
+const splitMembers = (assignment: string): string[] =>
+  assignment
+    .split(MEMBER_SEPARATOR)
+    .map((member) => member.trim())
+    .filter(Boolean);
+
+const describeAssignment = (when: string, assignment: string): string => {
+  const trimmed = assignment.trim();
+  if (!trimmed) return `${when} nadie trabaja presencial`;
+  if (EVERYONE_PATTERN.test(trimmed)) return `${when}: ${trimmed}`;
+
+  const members = splitMembers(trimmed);
+  const verb = members.length === 1 ? 'trabaja' : 'trabajan';
+  const mentions = members.map((member) => `@${member}`).join(` ${MEMBER_SEPARATOR} `);
+  return `${when} ${verb} presencial: ${mentions}`;
 };
 
 const buildRosterMessage = (roster: NextWorkdayRoster, pageUrl: string): string => {
-  const weekday = roster.weekday.toLocaleLowerCase('es');
-  const when = roster.isTomorrow ? `Mañana ${weekday}` : `El ${weekday}`;
-  const assignment = roster.assignment.trim() || EMPTY_ASSIGNMENT;
-  const headline = `📅 ${when} ${formatDayMonth(roster.date)} en oficina: *${assignment}*`;
-  const weekLine = `Semana tipo ${roster.weekType}`;
-  const footer = pageUrl ? `${weekLine} · Ver rotación: ${pageUrl}` : weekLine;
-  return `${headline}\n${footer}`;
+  const lines = [describeAssignment(describeWhen(roster), roster.assignment), ALERT_LINE];
+  if (pageUrl) lines.push(`Aquí puedes revisar el horario: ${pageUrl}`);
+  return lines.join('\n');
 };
 
 export { buildRosterMessage };
