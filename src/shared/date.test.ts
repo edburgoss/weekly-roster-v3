@@ -27,5 +27,3 @@ describe('rotation logic', () => {
     expect(nextIndex).toBe(3);
   });
 });
-
-

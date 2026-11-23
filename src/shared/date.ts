@@ -1,4 +1,3 @@
-
 import type { RotationConfig } from './types';
 import { parseISO, differenceInCalendarWeeks } from 'date-fns';
 
